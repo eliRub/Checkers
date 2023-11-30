@@ -1,0 +1,2 @@
+# Checkers
+A checkers game.

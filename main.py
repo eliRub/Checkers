@@ -1,8 +1,8 @@
 from Board_GUI import BoardGUI
 
-def main():
+def start_game():
     BoardGUI()
 
 
 if __name__ == "__main__":
-    main()
+    start_game()

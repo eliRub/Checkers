@@ -9,6 +9,7 @@ class Victory:
         self.window_setup()
 
     def window_setup(self):
+        """ Sets up the GUI of the 'Victory' window."""
         window = tk.Tk()
         window.geometry("600x400")
         window.title("VICTORY!")
@@ -41,6 +42,7 @@ class Victory:
         window.mainloop()
 
     def new_game(self, this_window):
+        """ In case the user press the 'play again' button, this function will be executed."""
         this_window.destroy()
 
         current_directory = os.path.dirname(os.path.abspath(__file__))

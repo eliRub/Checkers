@@ -4,8 +4,12 @@ class King:
     def __init__(self, color):
         self.color = color
 
+    @staticmethod
+    def check_move(source: tuple, dest: tuple):
+        """ Checks that the move the user made is legal in terms of the direction of the move.
+            That is, checking that he does not jump straight....
+        """
 
-    def check_move(self, source: tuple, dest: tuple):
         first_row = source[0]
         first_column = source[1]
         second_row = dest[0]

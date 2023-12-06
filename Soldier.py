@@ -1,4 +1,3 @@
-
 class Soldier:
 
     def __init__(self, color: str):
@@ -6,6 +5,8 @@ class Soldier:
 
 
     def check_move(self, source: tuple, dest: tuple):
+        """ Checks that the move the user made is legal in terms of the number of moves he made, and in which direction.
+        """
         first_row = source[0]
         first_column = source[1]
         second_row = dest[0]
@@ -17,6 +18,8 @@ class Soldier:
                 return True, 1
             elif (first_row - second_row) == 2 and abs(first_column - second_column) == 2:
                 return True, 2
+            elif abs(first_row - second_row) == 2 and abs(first_column - second_column) == 2:
+                return True, -2  # -> It means that only if the user have a few to eat together, it will be true.
             else:
                 return False, 0
         else:
@@ -25,5 +28,7 @@ class Soldier:
                 return True, 1
             elif (second_row - first_row) == 2 and abs(first_column - second_column) == 2:
                 return True, 2
+            elif abs(second_row - first_row) == 2 and abs(first_column - second_column) == 2:
+                return True, -2
             else:
                 return False, 0

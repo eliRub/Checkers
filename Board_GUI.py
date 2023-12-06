@@ -47,6 +47,7 @@ class BoardGUI:
                 # Creating a square with the right color.
                 square_color = "#8B5A2B" if (j + i) % 2 == 0 else "#CDAA7D"
                 # The (width, height) in this button means 74 and 65 pixels, because I added an image to it.
+                # This is for the white soldiers.
                 if (j + i) % 2 == 0 and i <= 2:
                     button = tk.Button(master=board_frame,
                                        image=black_soldier,
@@ -55,6 +56,7 @@ class BoardGUI:
                                        height=65,
                                        bg=square_color,
                                        command=lambda b_row=i, b_column=j: self.handle_square_press(b_row, b_column))
+                # This is for the black soldiers.
                 elif (j + i) % 2 == 0 and i >= 5:
                     button = tk.Button(master=board_frame,
                                        image=white_soldier,
@@ -63,6 +65,7 @@ class BoardGUI:
                                        height=65,
                                        bg=square_color,
                                        command=lambda b_row=i, b_column=j: self.handle_square_press(b_row, b_column))
+                # This is for the squares between the white and black soldiers.
                 elif (i + j) % 2 == 0:
                     button = tk.Button(master=board_frame,
                                        activebackground="YELLOW",
@@ -70,8 +73,8 @@ class BoardGUI:
                                        height=4,
                                        bg=square_color,
                                        command=lambda b_row=i, b_column=j: self.handle_square_press(b_row, b_column))
+                # This is for squares that are not played on.
                 else:
-                    # Here I created all the squares that will not be played on.
                     # The (width, height) in this button means width of 10 average characters. and height of 4 lines.
                     button = tk.Button(master=board_frame, width=10, height=4, bg=square_color)
                     # Disables all the un-plays squares.
@@ -80,17 +83,17 @@ class BoardGUI:
                 button.grid(row=i, column=j)
                 row.append(button)
             self.buttons.append(row)
-
+        
         # Testing
-        for i in range(8):
-            for j in range(8):
-                if self.board.buttons_list[i][j] is not None and self.board.buttons_list[i][j].color == "white":
-                    print(Fore.LIGHTWHITE_EX + self.board.buttons_list[i][j].color, end="||" + Fore.RESET)
-                elif self.board.buttons_list[i][j] is not None:
-                    print(Fore.LIGHTBLACK_EX + self.board.buttons_list[i][j].color, end="||" + Fore.RESET)
-                else:
-                    print(self.board.buttons_list[i][j], end="||")  # == None
-            print()
+        # for i in range(8):
+        #     for j in range(8):
+        #         if self.board.buttons_list[i][j] is not None and self.board.buttons_list[i][j].color == "white":
+        #             print(Fore.LIGHTWHITE_EX + self.board.buttons_list[i][j].color, end="||" + Fore.RESET)
+        #         elif self.board.buttons_list[i][j] is not None:
+        #             print(Fore.LIGHTBLACK_EX + self.board.buttons_list[i][j].color, end="||" + Fore.RESET)
+        #         else:
+        #             print(self.board.buttons_list[i][j], end="||")  # == None
+        #     print()
         self.window.mainloop()
         print("\n----------------------------------------------------\n")
         for i in range(8):
@@ -102,7 +105,6 @@ class BoardGUI:
                 else:
                     print(self.board.buttons_list[i][j], end="||")  # == None
             print()
-
 
     def handle_square_press(self, row, column):
         """ This function sends the row and column of the pressed button to the backend, and if the backend returns True,
@@ -132,7 +134,7 @@ class BoardGUI:
 
         self.buttons[dest_row][dest_column] = source_button_widget
         self.buttons[source_row][source_column] = dest_button_widget
-
+            
         dest_button_widget.config(command=source_button_command)
         source_button_widget.config(command=dest_button_command)
 
